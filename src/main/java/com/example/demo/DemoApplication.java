@@ -25,9 +25,11 @@ public class DemoApplication {
 	@RequestMapping("/test")
 	public String test() {
 		Connection conn = null;
+		String rs = "";
 		try {
 			conn = this.dataSource.getConnection();
-			System.out.println("adfadsf+++++++++" + conn.getSchema());
+			rs = conn.getMetaData().getDriverVersion();
+			System.out.println("adfadsf+++++++++" + rs);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -40,7 +42,7 @@ public class DemoApplication {
 				}
 			}
 		}
-		return "ok";
+		return rs;
 	}
 
 }
